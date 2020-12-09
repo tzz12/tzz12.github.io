@@ -1,85 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="baidu-site-verification" content="vvVgSQUzPU" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
-    <meta name="keywords" content="虎虎|博客|个人|utone|Utone|">
-    <meta name="description" content="骑士恨煎蛋，骑士恨孜然">
-    
-    <title>
-       test_my_site -  Hexo
-    </title>
-    
-<link rel="stylesheet" href="/css/style.css">
- 
-    
-      <link rel="icon" href="/images/favicon.ico" />
-    
-  <meta name="generator" content="Hexo 5.2.0"></head>
-  <body>
-    <div id="container">
-      <div id="main-left">
-        <div id="introduce">
-          <div class="logo-worp">
-            <a href="/"><img class="logo" src="/images/logo.png" alt=""/></a>
-          </div>
-          <ul>
-            
-              <li><a href="/"> Home </a></li>
-            
-              <li><a href="/archives"> Archive </a></li>
-            
-              <li><a href="/about"> About </a></li>
-            
-              <li><a href="/atom.xml"> RSS </a></li>
-            
-            <li>
-              <img id="search-img" src="/images/search.svg" alt="search" />
-            </li>
-          </ul>
-          
-        </div>
-      </div>
-      <div id="main-right"><div id="post">
-    
-    <header class="article-header">
-        <h1>
-            test_my_site
-        </h1>
-    </header>
-    
-    <div class="post-meta">
-        <time class="post-data" datetime="2020-12-09T05:42:02.000Z" itemprop="datePublished">
-            2020-12-09
-        </time>
-        
-        
-    </div>
-    
-    <div class="post-entry">
-        
-    </div>
-    <!--畅言PC和WAP自适应版-->
-  
-</div></div>
-    </div>
-    <div id="footer">骑士恨煎蛋，骑士恨孜然</div>
-    <img id="top" src="/images/up-circle.svg" alt="top" />
-    
-  </body>
-</html>
-<!-- 加载主题脚本文件 -->
+{% extends "_layout.swig" %}
+{% import '_macro/post.swig' as post_template %}
 
-<script src="/scripts/utone.js"></script>
+{% block title %} {{ page.title }} - {{ config.title }} {% endblock %}
 
-
-<script type="text/javascript">
-  window.onload = function() {
-    scroll.init()
-    siteSearch.init()
-  }
-</script>
+{% block content %}
+    <div id="primary">
+        {{ post_template.render(page) }}
+    </div>
+{% endblock %}
