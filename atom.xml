@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>半糖</title>
+  
+  
+  <link href="https://tzz12.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://tzz12.github.io/"/>
+  <updated>2021-02-24T03:01:29.883Z</updated>
+  <id>https://tzz12.github.io/</id>
+  
+  <author>
+    <name>tzz</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://tzz12.github.io/2021/02/24/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"/>
+    <id>https://tzz12.github.io/2021/02/24/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</id>
+    <published>2021-02-24T03:01:29.883Z</published>
+    <updated>2021-02-24T03:01:29.883Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mongodb笔记</title>
+    <link href="https://tzz12.github.io/2021/02/07/mongodb%E7%AC%94%E8%AE%B0/"/>
+    <id>https://tzz12.github.io/2021/02/07/mongodb%E7%AC%94%E8%AE%B0/</id>
+    <published>2021-02-07T07:08:25.000Z</published>
+    <updated>2021-02-07T08:06:52.506Z</updated>
+    
+    <content type="html"><![CDATA[<p>##问题：<br>安装完mongodb之后，创建第二个数据库时报错：”not authorized on admin to execute command “<br>解决方法：关闭mongodb之后，修改mongodb的配置文件mongodb.conf中的auth=true改成auth=false，保存即可</p><h3 id="1-进入cmd界面，输入：mongo，进入mongo服务"><a href="#1-进入cmd界面，输入：mongo，进入mongo服务" class="headerlink" title="1 进入cmd界面，输入：mongo，进入mongo服务"></a>1 进入cmd界面，输入：mongo，进入mongo服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mongo</span><br></pre></td></tr></table></figure><h3 id="2-mongodb连接"><a href="#2-mongodb连接" class="headerlink" title="2 mongodb连接"></a>2 mongodb连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ &gt; mongodb://admin:123456@localhost/</span><br><span class="line">    ... </span><br></pre></td></tr></table></figure><h3 id="3-mongodb创建数据库"><a href="#3-mongodb创建数据库" class="headerlink" title="3 mongodb创建数据库"></a>3 mongodb创建数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ use DATABASE_NAME</span><br></pre></td></tr></table></figure><p>如果数据库不存在，则创建数据库，否则切换到指定数据库</p><h3 id="3-查看所有数据库，可以使用show-dbs"><a href="#3-查看所有数据库，可以使用show-dbs" class="headerlink" title="3 查看所有数据库，可以使用show dbs"></a>3 查看所有数据库，可以使用show dbs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ show dbs</span><br></pre></td></tr></table></figure><h3 id="4-删除数据库"><a href="#4-删除数据库" class="headerlink" title="4 删除数据库"></a>4 删除数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db.dropDatabase()</span><br></pre></td></tr></table></figure><h3 id="5-mongodb-创建集合"><a href="#5-mongodb-创建集合" class="headerlink" title="5 mongodb 创建集合"></a>5 mongodb 创建集合</h3><p>想要创建哪个数据库下的集合，就先转到哪个数据库下，再执行创建集合语句<br>例如：在test数据库中创建runoob集合</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; use <span class="built_in">test</span></span><br><span class="line">switched to db <span class="built_in">test</span></span><br><span class="line">&gt; db.createCollection(<span class="string">&quot;runoob&quot;</span>)</span><br><span class="line">&#123; <span class="string">&quot;ok&quot;</span> : 1 &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure><h3 id="6-删除集合"><a href="#6-删除集合" class="headerlink" title="6 删除集合"></a>6 删除集合</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db.collection.drop()</span><br></pre></td></tr></table></figure><h3 id="7-插入文档"><a href="#7-插入文档" class="headerlink" title="7 插入文档"></a>7 插入文档</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;db.col.insert(&#123;title: <span class="string">&#x27;MongoDB 教程&#x27;</span>, </span><br><span class="line">    description: <span class="string">&#x27;MongoDB 是一个 Nosql 数据库&#x27;</span>,</span><br><span class="line">    by: <span class="string">&#x27;菜鸟教程&#x27;</span>,</span><br><span class="line">    url: <span class="string">&#x27;http://www.runoob.com&#x27;</span>,</span><br><span class="line">    tags: [<span class="string">&#x27;mongodb&#x27;</span>, <span class="string">&#x27;database&#x27;</span>, <span class="string">&#x27;NoSQL&#x27;</span>],</span><br><span class="line">    likes: 100</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="8-查看已插入的文档"><a href="#8-查看已插入的文档" class="headerlink" title="8 查看已插入的文档"></a>8 查看已插入的文档</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db.col.find()</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;##问题：&lt;br&gt;安装完mongodb之后，创建第二个数据库时报错：”not authorized on admin to execute command “&lt;br&gt;解决方法：关闭mongodb之后，修改mongodb的配置文件mongodb.conf中的auth=true</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>重装系统-win10</title>
+    <link href="https://tzz12.github.io/2021/01/18/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F-win10/"/>
+    <id>https://tzz12.github.io/2021/01/18/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F-win10/</id>
+    <published>2021-01-18T01:13:08.000Z</published>
+    <updated>2021-01-18T01:24:08.368Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、资源准备"><a href="#一、资源准备" class="headerlink" title="一、资源准备"></a>一、资源准备</h3><p>– 1 下载win10 镜像数据,下载的数据放到除C盘外的其他盘，因为重装系统会格式化C盘<br>– 2 下载系统激活工具：<a href="https://qgp8hy2lt1.feishu.cn/file/boxcnlVlnlac8x01geEQJtICjwf">网页跳转</a><br>– 3 下载PE系统优启通：<a href="https://qgp8hy2lt1.feishu.cn/file/boxcneJTj36JqLhJY17Dtyynobb">网页跳转</a></p><h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>– 1 将PE系统压缩包解压，双击里面的可执行文件（.exe文件）<br>– 2 进入优启通界面，先格式话C盘（注意，这里显示的名称不一定是C盘，注意根据内存大小区分哪个是自己电脑的C盘）<br>– 3<br>– 4 进行数字激活</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、资源准备&quot;&gt;&lt;a href=&quot;#一、资源准备&quot; class=&quot;headerlink&quot; title=&quot;一、资源准备&quot;&gt;&lt;/a&gt;一、资源准备&lt;/h3&gt;&lt;p&gt;– 1 下载win10 镜像数据,下载的数据放到除C盘外的其他盘，因为重装系统会格式化C盘&lt;br&gt;– 2 下</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>win10如何开启IIS服务以及如何打开IIS管理器</title>
+    <link href="https://tzz12.github.io/2021/01/08/IIS/"/>
+    <id>https://tzz12.github.io/2021/01/08/IIS/</id>
+    <published>2021-01-08T05:35:39.000Z</published>
+    <updated>2021-01-08T05:49:23.930Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、开启IIS服务"><a href="#一、开启IIS服务" class="headerlink" title="一、开启IIS服务"></a>一、开启IIS服务</h3><p>1、打开控制面板，选择“程序”–&gt;“启动或关闭windows功能”，在弹出的对话框中勾选如下图：<br><img src="/2021/01/08/IIS/1.jpg"><br>然后点击确定</p><h3 id="二、打开IIS管理器"><a href="#二、打开IIS管理器" class="headerlink" title="二、打开IIS管理器"></a>二、打开IIS管理器</h3><p>在控制面板中选择“系统和安全”，再选择“管理工具”，如下图：<br><img src="/2021/01/08/IIS/2.jpg"><br>点击上图红圈部分即可打开IIS管路器</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、开启IIS服务&quot;&gt;&lt;a href=&quot;#一、开启IIS服务&quot; class=&quot;headerlink&quot; title=&quot;一、开启IIS服务&quot;&gt;&lt;/a&gt;一、开启IIS服务&lt;/h3&gt;&lt;p&gt;1、打开控制面板，选择“程序”–&amp;gt;“启动或关闭windows功能”，在弹出的对</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python基础</title>
+    <link href="https://tzz12.github.io/2020/12/25/python%E5%9F%BA%E7%A1%80/"/>
+    <id>https://tzz12.github.io/2020/12/25/python%E5%9F%BA%E7%A1%80/</id>
+    <published>2020-12-25T07:33:54.000Z</published>
+    <updated>2021-02-22T02:24:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="导入模块-例如导入matplotlib"><a href="#导入模块-例如导入matplotlib" class="headerlink" title="导入模块  例如导入matplotlib"></a>导入模块  例如导入matplotlib</h3><p>方式：<br>–1 cmd<br>–2 python -m pip install matplotlib</p><p>–20201230<br>导入turtle模块，原本下载之后的turtle放在C:\Python27\ArcGIS10.4\Lib\lib-tk<br>但，在使用时引用Screen出现错误，因此根据网上教程将C:\Python27\ArcGIS10.4\Lib下面的turtle重命名为myturtle</p><p>python不必加分号分行，但也可以不会报错</p><h3 id="python的3种注释"><a href="#python的3种注释" class="headerlink" title="python的3种注释"></a>python的3种注释</h3><p>1 “#”<br>2 英文状态下单引号（3个）<br>3 英文状态下双引号（3个）</p><p>###python数据类型<br>1 python是弱类型，变量没有类型，值才有类型<br>2 变量不必声明，可直接使用<br><a href="http://wiki.gisquest.com/display/AKnowledge/Python">不外传</a></p><h2 id="arcpy的教程"><a href="#arcpy的教程" class="headerlink" title="arcpy的教程"></a>arcpy的教程</h2><p><a href="https://mp.weixin.qq.com/s/g0TTV-znkLbn24zPYjio1A">点这里</a></p><h3 id="判断网页是否为静态加载网页"><a href="#判断网页是否为静态加载网页" class="headerlink" title="判断网页是否为静态加载网页"></a>判断网页是否为静态加载网页</h3><p>ctrl+u 打开源代码，ctrl+f 打开搜索，可以搜索到结果，可以判定为静态加载</p><h3 id="爬虫教程"><a href="#爬虫教程" class="headerlink" title="爬虫教程"></a>爬虫教程</h3><p>[转载]（<a href="https://mp.weixin.qq.com/s/U85Bnv4-WkSP-14qXBlDWg%EF%BC%89">https://mp.weixin.qq.com/s/U85Bnv4-WkSP-14qXBlDWg）</a></p><h3 id="pip-install-urllib2-失败问题"><a href="#pip-install-urllib2-失败问题" class="headerlink" title="pip install urllib2 失败问题"></a>pip install urllib2 失败问题</h3><p><img src="/2020/12/25/python%E5%9F%BA%E7%A1%80/1.jpg"></p><h3 id="操作Excel的python库—xlrd与xlwt"><a href="#操作Excel的python库—xlrd与xlwt" class="headerlink" title="操作Excel的python库—xlrd与xlwt"></a>操作Excel的python库—xlrd与xlwt</h3><p><img src="/2020/12/25/python%E5%9F%BA%E7%A1%80/2.jpg"><br>–xlrd是用来从Excel中读写数据的，但我们通常只用它进行读操作，写操作会相对于专门的写入模块麻烦一些。其实，后面的rd可以看出是reader的缩写</p><p>类比于xlrd的reader，那么xlwt就相对于wtiter，而且很纯正的一点就是它只能对Excel进行写操作</p><h4 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install Xlrd</span><br><span class="line">pip install xlwt</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;导入模块-例如导入matplotlib&quot;&gt;&lt;a href=&quot;#导入模块-例如导入matplotlib&quot; class=&quot;headerlink&quot; title=&quot;导入模块  例如导入matplotlib&quot;&gt;&lt;/a&gt;导入模块  例如导入matplotlib&lt;/h3&gt;&lt;p&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>arcgis相关</title>
+    <link href="https://tzz12.github.io/2020/12/22/arcgis%E7%9B%B8%E5%85%B3/"/>
+    <id>https://tzz12.github.io/2020/12/22/arcgis%E7%9B%B8%E5%85%B3/</id>
+    <published>2020-12-22T01:47:15.000Z</published>
+    <updated>2020-12-25T02:54:24.732Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、查看arcgis版本号"><a href="#一、查看arcgis版本号" class="headerlink" title="一、查看arcgis版本号"></a>一、查看arcgis版本号</h2><p>打开软件<br>帮助——关于arcmap</p><h2 id="二、坐标串（-txt）转线、面"><a href="#二、坐标串（-txt）转线、面" class="headerlink" title="二、坐标串（.txt）转线、面"></a>二、坐标串（.txt）转线、面</h2><p>1、 添加数据<br>将txt文件添加到arcmap中<br>2、选中右键 选择“显示XY数据”<br>在弹出的对话框中，选择匹配的x，y坐标字段以及正确的坐标系，然后点击“确定”，就生成了点数据<br>3、点转线，使用工具“要素转线”<br>4、线转面，使用工具“要素转面”</p><h2 id="三、创建企业数据库"><a href="#三、创建企业数据库" class="headerlink" title="三、创建企业数据库"></a>三、创建企业数据库</h2><p>1、在工具箱中找到“数据管理工具——地理数据库管理——创建企业数据库”<br>2、双击“创建企业数据库”工具，弹出对话框<br>2.1 数据库平台选“oracle”<br>    实例：ip/实例名（oracle的实例名）<br>    数据库:非必选<br>    数据库管理员密码：一般为sys<br>    地理数据库管理员：sde<br>    地理数据库管理员密码：sde<br>    表空间名称：sde<br>    授权文件：选择与arcmap版本想对应的.ecp文件</p><h2 id="坐标系定义"><a href="#坐标系定义" class="headerlink" title="坐标系定义"></a>坐标系定义</h2><h3 id="什么是投影坐标系"><a href="#什么是投影坐标系" class="headerlink" title="什么是投影坐标系"></a>什么是投影坐标系</h3><p>–投影坐标系是在二维平面中进行定义；<br>–投影坐标系始终基于地理坐标系，而地理坐标系是基于球体或旋转椭球体的。<br>–1 坐标系定义原则：必须定义为待定义文件本身真实正确的坐标系。如不知道其真实坐标系，一般不能直接定义。<br>–2 定义操作不会改变坐标值，因此如定义错误，可重新定义覆盖。<br>–3 坐标系定义一般发生在以下情况下：已知某SHP文件坐标系是“西安80高斯投影无代号117”，但此SHP坐标系未定义。<br>定义方法：<br>–在目录中双击文件，出现属性窗口。在坐标系页面选择相应坐标系<br><img src="/2020/12/22/arcgis%E7%9B%B8%E5%85%B3/1.PNG"></p><h3 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h3><p>1、cad数据无带号与有带号的区别：<br>数据要素坐标若是6位+7位————无带号；若是8位+7位————有带号</p><h3 id="经纬度WGS84地理坐标系转换成CGCS2000坐标系"><a href="#经纬度WGS84地理坐标系转换成CGCS2000坐标系" class="headerlink" title="经纬度WGS84地理坐标系转换成CGCS2000坐标系"></a>经纬度WGS84地理坐标系转换成CGCS2000坐标系</h3><p>–做法：(<em>原始</em>)<strong>shp</strong>——(投影)——&gt;(<em>地理坐标系</em>)<strong>world ITRF2000</strong>——（重定义）——&gt;(<em>地理坐标系</em>)<strong>CGCS2000</strong>（<em>全拼：china geodetic coordinate system 2000</em>）——（投影）——&gt;(<em>投影坐标系</em>)<strong>CGCS2000</strong><br>具体步骤：<a href="https://mp.weixin.qq.com/s/O7B9p7H6KV9zW3QXB8ku7Q">点这里</a></p><h3 id="ArcGIS-将CAD数据转为shp格式"><a href="#ArcGIS-将CAD数据转为shp格式" class="headerlink" title="ArcGIS 将CAD数据转为shp格式"></a>ArcGIS 将CAD数据转为shp格式</h3><p><a href="https://mp.weixin.qq.com/s/8WQ-WRbI2IMWMEob3m4EYQ">点这里</a><br>注：在使用工具“要素类转shp（批量）”时，可能会报“ERROR 000210”<br>1 一般在网上查找这个错误的解释时都说是<em>无法创建输出。可能的原因包括数据锁定、路径不正确和访问权限受限</em>，但我都不是<br>2 （<em>最后的解决方法很奇怪，我也不太明白</em>）一开始的做法是直接将.dxf文件整个拖到arcmap图层处，结果一直报000210；后来我将.dxf文件中的<strong>各个要素一个一个拖出来</strong>，才执行成功</p><h3 id="将XY坐标转为经纬度坐标并导出为excel表格"><a href="#将XY坐标转为经纬度坐标并导出为excel表格" class="headerlink" title="将XY坐标转为经纬度坐标并导出为excel表格"></a>将XY坐标转为经纬度坐标并导出为excel表格</h3><p><a href="https://mp.weixin.qq.com/s/4WXTVYQ68lHTN1tqv29YJQ">点这里</a></p><h3 id="地类图斑面积总是计算不对？这两种拓扑错误要小心了"><a href="#地类图斑面积总是计算不对？这两种拓扑错误要小心了" class="headerlink" title="地类图斑面积总是计算不对？这两种拓扑错误要小心了"></a>地类图斑面积总是计算不对？这两种拓扑错误要小心了</h3><p><a href="https://mp.weixin.qq.com/s/rSmYbepM13XC7fbxljP6sg">点这里</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、查看arcgis版本号&quot;&gt;&lt;a href=&quot;#一、查看arcgis版本号&quot; class=&quot;headerlink&quot; title=&quot;一、查看arcgis版本号&quot;&gt;&lt;/a&gt;一、查看arcgis版本号&lt;/h2&gt;&lt;p&gt;打开软件&lt;br&gt;帮助——关于arcmap&lt;/p&gt;
+&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://tzz12.github.io/2020/12/21/test/"/>
+    <id>https://tzz12.github.io/2020/12/21/test/</id>
+    <published>2020-12-21T08:05:08.000Z</published>
+    <updated>2020-12-21T08:08:21.811Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2020/12/21/test/test.PNG"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/12/21/test/test.PNG&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>oracle相关</title>
+    <link href="https://tzz12.github.io/2020/12/16/oracle%E7%9B%B8%E5%85%B3/"/>
+    <id>https://tzz12.github.io/2020/12/16/oracle%E7%9B%B8%E5%85%B3/</id>
+    <published>2020-12-16T06:17:48.000Z</published>
+    <updated>2020-12-29T08:48:30.080Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="常用语句"><a href="#常用语句" class="headerlink" title="常用语句"></a>常用语句</h3><p>sqlplus界面查询某表<br>select * from user_tables where table_name = ‘表名’;</p><h2 id="安装oracle11gR2先决条件检查失败的解决方法"><a href="#安装oracle11gR2先决条件检查失败的解决方法" class="headerlink" title="安装oracle11gR2先决条件检查失败的解决方法"></a>安装oracle11gR2先决条件检查失败的解决方法</h2><h3 id="一、错误信息"><a href="#一、错误信息" class="headerlink" title="一、错误信息"></a>一、错误信息</h3><p>当安装到“先决条件检查”时，提示如下图所示的错误：<br><img src="/images/errorINFO.jpg"></p><h3 id="二、错误原因"><a href="#二、错误原因" class="headerlink" title="二、错误原因"></a>二、错误原因</h3><p>–一般情况下，由于操作系统未开启默认共享，导致oracle无法检查环境的可用性。</p><h3 id="三、解决方法"><a href="#三、解决方法" class="headerlink" title="三、解决方法"></a>三、解决方法</h3><p>–1、在运行中（键盘按win+R）输入regedit打开注册表，找到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\lanmanServer\Parameters,选中Parameters，在右边名称中找到AutoShareWks项，在其右键菜单中，点击修改，将其“数值数据（V）：”由原来的0改为1，然后点击确定。<br>–2、重启电脑，通过DOS命令net share 查看默认共享情况是否正常，在共享列表中会看到ADMIN$、C$、IPC$等默认共享了。<br>–3、选中Oracle的安装文件setup.exe，右键菜单中，点击“管理员取得所有权”，然后再点击“以管理员身份运行(A)”进行安装，就不再报错了。<br>–4、在Oracle成功安装完成，记得将之前修改的注册表值改回 </p><h3 id="四、安装过程中报错2"><a href="#四、安装过程中报错2" class="headerlink" title="四、安装过程中报错2"></a>四、安装过程中报错2</h3><p>–1、错误描述<br>当安装进行到大概60%左右时，此时提示说找不到“F:\app\Administrator\product\11.2.0\dbhome_1\oc4j\j2ee\oc4j_applications\applications\em.ear”这个文件，那就说明缺少该文件<br>–2 解决方法：<br>Oracle11g下载之后解压出来有两个文件夹(win32_11gR2_database_1of2和win32_11gR2_database_2of2)，出现这个错误是因为主安装文件夹下的文件不齐全，此时，只要将文件夹..\win32_11gR2_database_2of2\database\stage\Components\下的所有文件复制，并黏贴到..\win32_11gR2_database_1of2\database\stage\Components\下，然后在错误界面上点击‘中止’按钮结束本次安装，不用操作其他，直接再重新运行setup.exe安装就可以了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;常用语句&quot;&gt;&lt;a href=&quot;#常用语句&quot; class=&quot;headerlink&quot; title=&quot;常用语句&quot;&gt;&lt;/a&gt;常用语句&lt;/h3&gt;&lt;p&gt;sqlplus界面查询某表&lt;br&gt;select * from user_tables where table_name = </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>信息系统管理工程师笔记1</title>
+    <link href="https://tzz12.github.io/2020/12/16/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AE%B0/"/>
+    <id>https://tzz12.github.io/2020/12/16/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-12-16T00:50:16.632Z</published>
+    <updated>2021-01-26T07:18:46.888Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-2-5-CISC-RISC指令系统"><a href="#1-2-5-CISC-RISC指令系统" class="headerlink" title="1.2.5 CISC/RISC指令系统"></a>1.2.5 CISC/RISC指令系统</h3><p>CISC–复杂指令集计算机<br>RISC–精简指令系统</p><p>###1.3.1 存储系统概述及分类<br>1 高速缓冲存储器——高速小容量存储器<br>2 主存<br>3 高速缓冲存储器和主存都是内存储器<br>4 辅助存储器————–外存储器，特点：容量大<br>按大小排序：寄存器 &lt; 高速缓存 &lt; 主存储器 &lt; 磁盘缓存 &lt; 固定磁盘 &lt; 可移动存储介质</p><h2 id="2-4-设备管理"><a href="#2-4-设备管理" class="headerlink" title="2.4 设备管理"></a>2.4 设备管理</h2><h3 id="2-4-1-I-O硬件原理"><a href="#2-4-1-I-O硬件原理" class="headerlink" title="2.4.1 I/O硬件原理"></a>2.4.1 I/O硬件原理</h3><p>–I/O设备的控制方式：询问方式、中断方式、DMA方式、通道方式<br>–I/O软件组织的四个层次：I/O中断处理程序、设备驱动程序、与设备无关的操作系统I/O软件、用户层I/O软件</p><h3 id="2-4-4-磁盘调度"><a href="#2-4-4-磁盘调度" class="headerlink" title="2.4.4 磁盘调度"></a>2.4.4 磁盘调度</h3><p>–移臂调度<br>–旋转调度算法</p><h3 id="2-5-1-文件与文件系统"><a href="#2-5-1-文件与文件系统" class="headerlink" title="2.5.1 文件与文件系统"></a>2.5.1 文件与文件系统</h3><p>文件分类：<br>    按用途:系统文件、库文件和用户文件<br>    按保护级别：只读文件、读写文件和不保护文件<br>    按信息流向:输入文件、输出文件和输入输出文件</p><p>文件存取：<br>    顺序、直接、索引</p><h2 id="2-6-作业管理"><a href="#2-6-作业管理" class="headerlink" title="2.6 作业管理"></a>2.6 作业管理</h2><p>1、一个作业从提交给系统，直到运行结束获得结果，要经过<br><strong>提交、收容、执行和完成</strong>四个阶段<br>2、作业管理方式：<br>脱机、联机<br>3、当一个作业被操作系统接受，就必须创建一个作业控制块，并且这个作业在它的整个生命周期中将顺序地处于以下四个状态：<br>输入状态——&gt;后备状态——&gt;执行状态——&gt;完成状态</p><h3 id="2-6-2-作业调度"><a href="#2-6-2-作业调度" class="headerlink" title="2.6.2 作业调度"></a>2.6.2 作业调度</h3><p>常用的作业调度算法：<br>    先来先服务算法<br>    最短作业优先算法<br>    响应比最高者优先算法<br>    优先数法（优先数确定方法：静态优先数 、动态优先数）</p><h2 id="3-1-程序设计语言基础知识"><a href="#3-1-程序设计语言基础知识" class="headerlink" title="3.1 程序设计语言基础知识"></a>3.1 程序设计语言基础知识</h2><h3 id="3-1-2-程序设计语言的基本成分"><a href="#3-1-2-程序设计语言的基本成分" class="headerlink" title="3.1.2 程序设计语言的基本成分"></a>3.1.2 程序设计语言的基本成分</h3><p>数据成分、运算成分、控制成分、函数<br><strong>注</strong><br>TCO —总成本</p><h3 id="4-1-4-系统事务管理"><a href="#4-1-4-系统事务管理" class="headerlink" title="4.1.4 系统事务管理"></a>4.1.4 系统事务管理</h3><p>1 事务的4个特性：ACID，即原子性、一致性、隔离性、持续性<br>2 事务是并发的基本单位<br>3 并发控制机制是衡量一个数据库管理系统性能的重要标志之一<br>4 恢复子系统是数据库管理系统的一个重要组成部分，是衡量系统性能优劣的重要指标</p><h3 id="4-2-2-系统性能评估"><a href="#4-2-2-系统性能评估" class="headerlink" title="4.2.2 系统性能评估"></a>4.2.2 系统性能评估</h3><p>1 计算机的性能评价技术主要包括三种技术：<br>    分析技术<br>    模拟技术<br>    测量技术</p><h2 id="4-3-系统可靠性"><a href="#4-3-系统可靠性" class="headerlink" title="4.3 系统可靠性"></a>4.3 系统可靠性</h2><p>1 系统的可靠性用平均无故障时间（MTTF）来衡量<br>  系统的可维护性用平均维修时间（MTTR）来度量<br>  系统的可用性定义为：MTTF/(MTTF+MTTR)X100%<br> 2 常见的计算机可靠性数学模型<br>    串联系统可靠性<br>    并联系统可靠性<br>    混联系统</p><h1 id="第六章-多媒体基础知识"><a href="#第六章-多媒体基础知识" class="headerlink" title="第六章 多媒体基础知识"></a>第六章 多媒体基础知识</h1><h3 id="6-1-1-多媒体计算机技术"><a href="#6-1-1-多媒体计算机技术" class="headerlink" title="6.1.1 多媒体计算机技术"></a>6.1.1 多媒体计算机技术</h3><p>1、具有的特性：<br>集成性、交互性、实时性、数字化<br>2、多媒体计算机系统：由计算机硬件系统和多媒体计算机软件系统组成<br>注：VLSI技术————大型集成电路技术</p><h3 id="6-2-1-多媒体数据压缩的基本原理"><a href="#6-2-1-多媒体数据压缩的基本原理" class="headerlink" title="6.2.1 多媒体数据压缩的基本原理"></a>6.2.1 多媒体数据压缩的基本原理</h3><p>可以用如下4个指标衡量一种数据压缩技术的好坏：压缩比、压缩后多媒体信息的质量、压缩和解压缩速度、压缩所需要的软硬件开销</p><h3 id="6-2-2-多媒体数据压缩的基本编码方式"><a href="#6-2-2-多媒体数据压缩的基本编码方式" class="headerlink" title="6.2.2 多媒体数据压缩的基本编码方式"></a>6.2.2 多媒体数据压缩的基本编码方式</h3><p>1 可分为：无损压缩和有损压缩<br>2 无损压缩：哈夫曼编码、算术编码、行程编码<br>  有损压缩：预测编码、变换编码、子带编码、矢量量化编码、混合编码、小波编码</p><h3 id="6-2-3-编码的国际标准"><a href="#6-2-3-编码的国际标准" class="headerlink" title="6.2.3 编码的国际标准"></a>6.2.3 编码的国际标准</h3><p>通用的压缩编码标准大致如下：<br>（1）JPEG<br>（2）MPEG<br>（3）H.261<br>（4）DVI</p><h3 id="7-3-1-数据通信模型"><a href="#7-3-1-数据通信模型" class="headerlink" title="7.3.1 数据通信模型"></a>7.3.1 数据通信模型</h3><p>1 一个完整的数据通信系统，一般由以下几个部分组成：数据终端设备（DTE）、通信控制器、通信信道、信号变换器（DCE）<br>2 数据通信模型分类：单工通信、半双工通信、全双工通信</p><h3 id="7-3-5-数据交换技术"><a href="#7-3-5-数据交换技术" class="headerlink" title="7.3.5 数据交换技术"></a>7.3.5 数据交换技术</h3><p>–线路交换<br>–报文交换<br>–分组交换</p><h3 id="7-4-1-局域网的介质访问控制方式"><a href="#7-4-1-局域网的介质访问控制方式" class="headerlink" title="7.4.1 局域网的介质访问控制方式"></a>7.4.1 局域网的介质访问控制方式</h3><p>–载波侦听多路访问（CSMA）<br>–令牌环访问控制<br>–令牌总线访问控制</p><h3 id="7-5-2-网络管理软件"><a href="#7-5-2-网络管理软件" class="headerlink" title="7.5.2 网络管理软件"></a>7.5.2 网络管理软件</h3><p>1 网管软件的功能可归纳为三个部分：体系结构、核心服务、应用程序</p><h1 id="第九章-安全性知识"><a href="#第九章-安全性知识" class="headerlink" title="第九章 安全性知识"></a>第九章 安全性知识</h1><h3 id="9-1-1-安全性基本概念和特性"><a href="#9-1-1-安全性基本概念和特性" class="headerlink" title="9.1.1 安全性基本概念和特性"></a>9.1.1 安全性基本概念和特性</h3><p>1 信息具有的三个特性：机密性、完整性、可用性</p><h3 id="9-1-2-安全性要素"><a href="#9-1-2-安全性要素" class="headerlink" title="9.1.2 安全性要素"></a>9.1.2 安全性要素</h3><p>1 信息系统主要由物理环境及保障、硬件设施、软件设施和管理者等部分组成    </p><h3 id="9-2-1-鉴别"><a href="#9-2-1-鉴别" class="headerlink" title="9.2.1 鉴别"></a>9.2.1 鉴别</h3><p>1 鉴别的方法主要有以下5种：<br>（1）用拥有的（如IC卡）进行鉴别<br>（2）用所知道的（如密码）进行鉴别<br>（3）用不可改变的特性（如生物学测定的标识特征）进行鉴别<br>（4）相信可靠的第三方建立的鉴别（递推）<br>（5）环境（如主机地址）<br>2 鉴别分为单向鉴别和双向鉴别</p><p><strong>注</strong><br>1 安全管理是信息系统安全能动性的组成部分<br>2 测试也是保证开发质量的重要手段之一</p><h3 id="第十二章"><a href="#第十二章" class="headerlink" title="第十二章"></a>第十二章</h3><p>–系统分析使用的主要方法：结构化分析方法<br>–系统分析阶段的产出：系统规格说明书<br>–系统分析工具：UML方法<br>2 结构化分析方法的工具<br>–数据流图（DFD）<br>    特点：抽象性和概括性<br>    基本成分：外部实体、数据流、数据存储、处理逻辑</p><h3 id="14-3-1-系统测试概述"><a href="#14-3-1-系统测试概述" class="headerlink" title="14.3.1 系统测试概述"></a>14.3.1 系统测试概述</h3><p>–1 信息系统测试应包括：<strong>软件测试</strong>、硬件测试和网络测试<br>–2 测试的类型：模块测试、联合测试、验收测试、系统测试4种类型</p><h3 id="14-3-3-测试方法"><a href="#14-3-3-测试方法" class="headerlink" title="14.3.3 测试方法"></a>14.3.3 测试方法</h3><p>–黑盒测试<br>–白盒测试<br>软件测试：人工测试（或代码复审）和机器测试<br>—人工测试：个人复查、走查、会审<br>—机器测试：黑盒测试（功能测试）、白盒测试（结构测试）</p><h3 id="14-3-4-测试用例设计"><a href="#14-3-4-测试用例设计" class="headerlink" title="14.3.4 测试用例设计"></a>14.3.4 测试用例设计</h3><p><strong>白盒测试的设计技术有</strong><br>逻辑覆盖法、基本路径测试等<br><strong>黑盒测试</strong><br><strong>等价类划分</strong>、<strong>边界值分析</strong>、错误推测法、因果图、功能图</p><h3 id="14-3-5-系统测试过程"><a href="#14-3-5-系统测试过程" class="headerlink" title="14.3.5 系统测试过程"></a>14.3.5 系统测试过程</h3><p>1 一个规范化的测试过程通常包括以下基本的测试活动：<br>–拟定测试计划<br>–编制测试大纲<br>–设计和生成测试用例<br>–实施测试<br>–生成测试报告<br>2 <strong>软件测试</strong><br>软件测试实际上分成4步：单元测试（模块测试）、组装测试（集成测试）、确认测试、系统测试<br>–（1）单元测试方法：驱动模块、桩模块<br>–（2）组装测试方法：非增量式集成和增量式集成<br>–（3）常见的系统测试：恢复测试、安全性测试、强度测试、性能测试、可靠性测试、安装测试<br>注：单元测试是为了发现编码阶段的错误；组装测试主要用于发现设计阶段产生的错误</p><h3 id="14-3-6-排错调试"><a href="#14-3-6-排错调试" class="headerlink" title="14.3.6 排错调试"></a>14.3.6 排错调试</h3><p>调试方法：试探法、回溯法、对分查找法、归纳法、演绎法</p><h2 id="14-4-系统的试运行和转换"><a href="#14-4-系统的试运行和转换" class="headerlink" title="14.4 系统的试运行和转换"></a>14.4 系统的试运行和转换</h2><p>1 新旧系统之间的转换方式有三种：直接转换、并行转换和分段转换</p><h3 id="16-2-2-服务级别管理"><a href="#16-2-2-服务级别管理" class="headerlink" title="16.2.2 服务级别管理"></a>16.2.2 服务级别管理</h3><p>–SLA 服务级别协议<br>1 服务级别管理是定义、协商、订约、检测和评审提供给客户服务的质量水准的流程</p><h3 id="16-3-3-IT财务管理流程"><a href="#16-3-3-IT财务管理流程" class="headerlink" title="16.3.3 IT财务管理流程"></a>16.3.3 IT财务管理流程</h3><p>1 IT财务管理，是负责对IT服务运作过程中所涉及的所有资源进行货币化管理的流程<br>2 该服务管理流程包括三个环节；分别是IT投资预算、IT会计核算和IT服务计费</p><h3 id="19-1-1-故障管理"><a href="#19-1-1-故障管理" class="headerlink" title="19.1.1 故障管理"></a>19.1.1 故障管理</h3><p>–故障特征：影响度、紧迫度、优先级</p><h3 id="19-2-1-故障接触人员"><a href="#19-2-1-故障接触人员" class="headerlink" title="19.2.1 故障接触人员"></a>19.2.1 故障接触人员</h3><p>–故障接触人员范围：（1）故障现场接触人员（2）初级支持人员（3）高级支持人员</p><h3 id="19-3-2-主机故障恢复措施"><a href="#19-3-2-主机故障恢复措施" class="headerlink" title="19.3.2 主机故障恢复措施"></a>19.3.2 主机故障恢复措施</h3><p>1 根据所提供的备份类型不同，主机服务上可分为三种：热重启、暖重启、冷重启</p><h3 id="19-3-4-网络故障恢复措施"><a href="#19-3-4-网络故障恢复措施" class="headerlink" title="19.3.4 网络故障恢复措施"></a>19.3.4 网络故障恢复措施</h3><p>（1）双主干<br>（2）开关控制技术<br>（3）路由器<br>（4）通信中件</p><h3 id="19-4-1"><a href="#19-4-1" class="headerlink" title="19.4.1"></a>19.4.1</h3><p>1 故障控制<br>–重在解决故障并提供响应的应急措施<br>2 问题控制流程<br>–把应急措施记录在问题记录中，同时也提供对这些措施的意见和建议<br>3 问题管理<br>–防止再次发生故障</p><h3 id="19-4-4-问题控制流程"><a href="#19-4-4-问题控制流程" class="headerlink" title="19.4.4 问题控制流程"></a>19.4.4 问题控制流程</h3><p>问题分析方法：<strong>Kepner&amp;Tregoe法</strong>、<strong>鱼骨图法（或称因果图法）</strong>、头脑风暴法、流程图法</p><p>##笔记总结</p><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>1 CPU中的控制器部分包括：程序计数器（PC）、指令寄存器（IR）、指令译码器<br>  CPU主要由运算器、控制器、寄存器和内部总线等部件组成<br>2 GPU—-1）GPU目前大量用在比特币的计算方面；2）GPU采用单指令流多数据流计算架构；3）擅长进行大规模并发计算<br>3 固态硬盘采用<strong>半导体存储器</strong>来存储信息<br>4 如果在n位数据中增加1位偶校验位进行传输，那么接收方收到的n+1位二进制信息中：有一位出错时可以发现传输错误但不能确定出错位置<br>5 按处理机的数量对计算机体系结构进行分类，可分为<strong>单处理系统</strong>、<strong>并行处理系统</strong>与<strong>多处理系统</strong>和<strong>分布式处理系统</strong></p><h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p>1 Cache是高速缓冲存储器，常用在高速设备和低速设备之间数据交换时进行缓冲<br>  RAM是随机访问存储器，即内存部件，是计算机工作时存放数据和指令的场所<br>  CD-ROM是指光盘<br>  CMOS是一块可读写的RAM芯片，集成（安装）在主板上，用于保存计算机启动时使用的有关计算机硬件配置的重要参数<br>2 <strong>字长</strong>：通常是指运算器的位数，进行计算的位数。字节越长，处理器能够计算的精度就越高<br>  <strong>数据通路宽度</strong>：是指数据总线一次能并行传送的位数，体现了信息的传送能力。<br>  <strong>指令系统</strong>：对处理器的性能有非常大的影响<br>  <strong>时钟频率</strong>：一般是指CPU内部工作频率，在同样的时间内，提高时钟频率，使得时钟周期减少，指令的执行时间减少。</p><h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><p>1 高级语言需要翻译，承担翻译任务的程序称为“语言处理程序”<br>   语言之间的翻译形式多种，基本方式：汇编、解释、编译<br>   汇编：将汇编语言——&gt;机器语言<br>   编译程序：将源程序——&gt;目标语言程序<br>   解释程序：直接解释执行源程序<br>   链接程序：不是实现程序语言翻译的语言处理程序，它是将分别在不同目标文件中编译或汇编的代码手机到一个可执行的文件中<br>2 高级语言中的两类错误：语法错误、语义错误<br>    语义错误：静态语义错误、动态语义错误<br>        静态语义错误：编译时能发现的错误<br>        动态语义错误：只有在程序运行时才发现的错误<br>    语法错误：语言结构上的错误<br>3 <strong>UML:</strong><br>    UML是面向对象开发方法的<strong>标准化建模语言</strong>。它不仅可以支持面向对象的分析与设计，且能够支持从需求分析开始的软件开发全过程。<br>    UML是一种<strong>构造语言</strong>。它与各种编程语言直接相连，而且有较好的映射关系<br>    UML是一种<strong>文档化语言</strong>。它适合于建立系统体系结构及其所有的细节文档</p><h2 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h2><p>1 信息开发过程：<br>    系统规划阶段：初步调查、可行性分析<br>    系统分析阶段：完成用户需求分析<br>    系统设计阶段：总体设计、详细设计、编写系统设计说明书<br>    系统实施阶段：实现信息系统<br>    系统运行阶段：日常操作、维护</p><h2 id="未知章节"><a href="#未知章节" class="headerlink" title="未知章节"></a>未知章节</h2><p>1 计算机系统的基础知识<br>–多个处理单元，可将任务分配给多个处理单元进行并行运算，是通过<strong>资源重复</strong>方式实现并行性<br>–<strong>高速缓冲存储器</strong>是存在于主存与CPU之间的一级存储器，由静态存储芯片(SRAM) 组成，容量比较小但速度比主存高得多，接近于CPU的速度。为了保证高速缓冲存储器的速度，其地址映像以及和主存数据的交换由<strong>硬件</strong>完成。<br>–<strong>MIPS</strong>(Million Instructions Per Second)意为单字长定点指令平均执行速度，即每秒处理的百万级的机器语言指令数，这是衡量<strong>CPU速度的一个指标</strong><br>–算法（Algorithm)是指解题方案的准确而完整的描述，是一系列解决问题的清晰指令，其<strong>5个特性</strong>为有穷性、确定性、可行性、有0个或多个输入、有一个或多个输出<br>–计算机的<strong>运算器结构</strong>：包括算术和逻辑运算单元、累加器（AC）、状态字寄存器（PSW）、寄存器组及多路转换器等逻辑部件<br>–累加器是运算器中的主要寄存器之一，用于暂存运算结果以及向ALU提供运算对象。<br>–按照<strong>CPU的指令系统架构</strong>，计算机分为<strong>复杂指令系统计算机和精简指令系统计算机</strong><br>–<strong>系统总线</strong>：按照传递信息的功能来分，可分为地址总线、数据总线和控制总线</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;1-2-5-CISC-RISC指令系统&quot;&gt;&lt;a href=&quot;#1-2-5-CISC-RISC指令系统&quot; class=&quot;headerlink&quot; title=&quot;1.2.5 CISC/RISC指令系统&quot;&gt;&lt;/a&gt;1.2.5 CISC/RISC指令系统&lt;/h3&gt;&lt;p&gt;CI</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>个人博客常用命令</title>
+    <link href="https://tzz12.github.io/2020/12/10/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://tzz12.github.io/2020/12/10/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <published>2020-12-10T01:05:32.962Z</published>
+    <updated>2020-12-10T06:14:26.616Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="更新个人博客"><a href="#更新个人博客" class="headerlink" title="更新个人博客"></a>更新个人博客</h2><p>–在博客所在的本地目录下，右键选择“git bash here”<br>–然后输入指令</p><h3 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure><h3 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure><h3 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure><h2 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h2><h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure><h2 id="博客——目录"><a href="#博客——目录" class="headerlink" title="博客——目录"></a>博客——目录</h2><h3 id="hexo的主目录系统包括："><a href="#hexo的主目录系统包括：" class="headerlink" title="hexo的主目录系统包括："></a>hexo的主目录系统包括：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">--_config.yml</span><br><span class="line">--package.json</span><br><span class="line">--scaffolds</span><br><span class="line">--<span class="built_in">source</span></span><br><span class="line">  --_posts</span><br><span class="line">--public</span><br><span class="line">--themes</span><br><span class="line">--.gitignore</span><br></pre></td></tr></table></figure><p>–_config.yml: 网站的全局配置文件，主要包括网站标题、副标题i、作者、关键字和描述信息等<br>–package.json: 框架的基本参数信息和它所依赖的插件，在npm安装时使用–save保存进去<br>–scaffolds: 模版文件夹，hexo会根据该文件夹下的对应文件进行初始化构建<br>–source: 存储一些直接来自用户的文件，很重要。如果不出意外你的文章就是保存在这个文件夹下（_posts）。_posts 目录下的md文件，会被编译成 html 文件，放到 public 文件夹下<br>–public: 初始化后是没有此文件的，是在hexo g编译生成静态文件后，public文件夹会自动生成。使用hexo clean清除 db.json 和 public 文件夹下的所有文件<br>–themes：主题文件夹，存储主题。相关的主题可以在 Github 上免费采购<br>–.gitignore：.gitignore 文件作用是声明不被 git 记录的文件，hexo init <folder> 也会产生一个 .gitignore 文件，可以先删除或者直接编辑，对hexo不会有影响</folder></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;更新个人博客&quot;&gt;&lt;a href=&quot;#更新个人博客&quot; class=&quot;headerlink&quot; title=&quot;更新个人博客&quot;&gt;&lt;/a&gt;更新个人博客&lt;/h2&gt;&lt;p&gt;–在博客所在的本地目录下，右键选择“git bash here”&lt;br&gt;–然后输入指令&lt;/p&gt;
+&lt;h3 id</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>markdown语法</title>
+    <link href="https://tzz12.github.io/2020/12/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E7%BA%AA%E5%BF%B5/"/>
+    <id>https://tzz12.github.io/2020/12/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E7%BA%AA%E5%BF%B5/</id>
+    <published>2020-12-09T09:30:33.000Z</published>
+    <updated>2020-12-23T06:55:36.407Z</updated>
+    
+    <content type="html"><![CDATA[<p>推荐网址：<a href="https://www.markdown.xyz/basic-syntax/#links">Markdown基本语法</a></p><h4 id="粗体的做法"><a href="#粗体的做法" class="headerlink" title="粗体的做法"></a>粗体的做法</h4><p>前后加两个星号或下划线</p><h4 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h4><p>前后加一个星号或下划线</p><h4 id="粗体和斜体同时使用"><a href="#粗体和斜体同时使用" class="headerlink" title="粗体和斜体同时使用"></a>粗体和斜体同时使用</h4><p>请在单词或短语的前后各添加三个星号或下划线</p><h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>要创建链接，请将链接文本括在方括号（例如 [Duck Duck Go]）中，后面紧跟着括在圆括号中的 URL（例如 (<a href="https://duckduckgo.com/">https://duckduckgo.com</a>) ）。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;推荐网址：&lt;a href=&quot;https://www.markdown.xyz/basic-syntax/#links&quot;&gt;Markdown基本语法&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;粗体的做法&quot;&gt;&lt;a href=&quot;#粗体的做法&quot; class=&quot;headerlink&quot; title</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://tzz12.github.io/2020/12/09/hello-world/"/>
+    <id>https://tzz12.github.io/2020/12/09/hello-world/</id>
+    <published>2020-12-09T05:32:09.625Z</published>
+    <updated>2020-12-10T05:52:22.742Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="你"><a href="#你" class="headerlink" title="你"></a>你</h3><h3 id="好"><a href="#好" class="headerlink" title="好"></a>好</h3><h3 id="啊"><a href="#啊" class="headerlink" title="啊"></a>啊</h3><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><h3 id="你-1"><a href="#你-1" class="headerlink" title="你"></a>你</h3><h3 id="好-1"><a href="#好-1" class="headerlink" title="好"></a>好</h3><h3 id="啊-1"><a href="#啊-1" class="headerlink" title="啊"></a>啊</h3><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
