@@ -39,6 +39,7 @@ toPng
 实现的逻辑是：通过==draw #4CAF50==方法将dom转化为==canvas #4CAF50==，然后通过canvas方式获取图片地址
 **注意：**
 对于要转换的dom节点需要是==可见的 #4CAF50==，即display: none等设置不可见的样式会导致出图失败
+若是目标node的子元素中包含display: none，可以使用filter属性过滤下
 
 简单示例：
 
