@@ -5,7 +5,7 @@ category: /小书匠/日记/2022-12
 emoji: "小"
 grammar_cjkRuby: true
 ---
-原理：https://www.jianshu.com/p/1628d41ec1ff
+[原理](https://www.jianshu.com/p/1628d41ec1ff)
 安装
 
 ``` javascript
