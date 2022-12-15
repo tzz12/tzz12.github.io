@@ -58,7 +58,7 @@ domtoimage.toJpeg(node, {
 
 ```
 
-属性
+[属性]([dom-to-image](8c4665ef-b213-40fc-a5b7-6a4cce63980f#xsj_1671093263256))
 filter
 
 ``` javascript
@@ -93,3 +93,18 @@ domtoimage.toPng(node, { bgcolor: '#ddd' })
  });
 
 ```
+下载压缩的图片
+
+``` javascript
+domtoimage.toJpeg(document.getElementById('my-node'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'my-image-name.jpeg';
+        link.href = dataUrl;
+        link.click();
+    });
+
+```
+
+参考：
+https://blog.csdn.net/HYeeee/article/details/124878950
