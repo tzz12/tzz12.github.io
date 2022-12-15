@@ -6,6 +6,17 @@ emoji: "小"
 grammar_cjkRuby: true
 ---
 原理：https://www.jianshu.com/p/1628d41ec1ff
+安装
+
+``` javascript
+npm install dom-to-image
+```
+引入
+
+``` javascript
+import domtoimage from 'dom-to-image';
+```
+
 提供的Api介绍
 ```
 toSvg
