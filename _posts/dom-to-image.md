@@ -18,7 +18,7 @@ toPixelData
 
 代码解读
 toPng
-```
+```javascript
   function toPng(node, options) {
     return draw(node, options || {}).then(function (canvas) {
       return canvas.toDataURL();
@@ -58,3 +58,38 @@ domtoimage.toJpeg(node, {
 
 ```
 
+属性
+filter
+
+``` javascript
+createImage() {
+    let node = document.getElementById('test');
+    let that = this
+    domtoimage.toPng(node, { filter: that.filterTag })
+        .then(function (dataUrl) {
+            console.log(dataUrl)
+            that.dataUrl = dataUrl
+        })
+        .catch(function (error) {
+            console.error('生成失败', error);
+        });
+},
+filterTag(node) {
+    console.log(node, node.tagName)
+    return node.tagName == 'IMG'
+}
+```
+bgcolor
+
+``` javascript
+domtoimage.toPng(node, { bgcolor: '#ddd' })
+ .then(function (dataUrl) {
+     console.log(dataUrl)
+     that.dataUrl = dataUrl
+     // FileSaver.saveAs(dataUrl, 'a.png');
+ })
+ .catch(function (error) {
+     console.error('生成失败', error);
+ });
+
+```
