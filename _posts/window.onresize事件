@@ -1,0 +1,12 @@
+---
+title: window.onresize事件
+category: /小书匠/日记/2022-12
+emoji: "强"
+grammar_cjkRuby: true
+---
+
+
+注意：
+
+ - 一般放在created或者mounted生命周期中，这样界面改变是能触发
+ - window.onresize中的==this #4CAF50==指向的是window，不是指向vue，如需要调用methods中函数或data中参数，需要提前将vue中的this赋值给其他字符，例如：==let this_ = this #4CAF50==
