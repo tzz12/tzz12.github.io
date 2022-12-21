@@ -16,3 +16,5 @@ gyp verb `which` failed Error: not found: python
 ```
 node 与node-sass版本对应
 ![enter description here](./images/1671587882910.png)
+最终解决方法：
+降低node版本到与node-sass一致
